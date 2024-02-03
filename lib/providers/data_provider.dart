@@ -54,7 +54,7 @@ class DataProvider with ChangeNotifier {
 
   getSerialNumber(String epc) async {
     notifyListeners();
-    _patientId = await _databaseService.getSerialNumberByEPC("E20000000000000000001500");
+    _patientId = await _databaseService.getSerialNumberByEPC(epc);
     print(_patientId);
     notifyListeners();
   }

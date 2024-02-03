@@ -1,5 +1,6 @@
 import 'package:assetcomply_notifier/constants/colors.dart';
 import 'package:assetcomply_notifier/providers/data_provider.dart';
+import 'package:assetcomply_notifier/screens/otp_screen.dart';
 import 'package:assetcomply_notifier/screens/select_lab_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: AppColor.primaryColor),
           useMaterial3: true,
         ),
-        home: const SelectLabScreen(),
+        home: const OtpScreen(),
       ),
     );
   }

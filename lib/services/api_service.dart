@@ -12,7 +12,9 @@ class ApiService {
     String queryParameter = '?page=$currentPage';
     String fullUrl = apiUrl + queryParameter;
 
-    while (currentPage <= 10) {
+    //TODO: Change below count
+
+    while (currentPage <= 1) {
       print("Current Page = $currentPage, Total Page = $totalPages");
       var url = Uri.parse(fullUrl);
       var response = await http.get(url);

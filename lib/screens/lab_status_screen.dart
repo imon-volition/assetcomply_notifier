@@ -29,40 +29,41 @@ class LabStatusScreen extends StatelessWidget {
     return WillPopScope(
       onWillPop: () async => false,
       child: Consumer<DataProvider>(builder: (context, dataProvider, child) {
-        switch (dataProvider.labStatus) {
-          case LabStatus.labAvailable:
-            return Scaffold(
-              body: LabAvailableView(labId: dataProvider.labId),
-            );
-          case LabStatus.labOccupied:
-            return Scaffold(
-              body: LabOccupiedView(
-                labId: dataProvider.labId,
-                epc: dataProvider.socketMessage['epc'],
-                inTime: dataProvider.socketMessage['inTime'],
-         
-              ),
-            );
-          case LabStatus.patientDetected:
-            return Scaffold(
-              body: LabPatientDetectedView(
-                epc: dataProvider.socketMessage['epc'],
-                inTime: dataProvider.socketMessage['inTime'],
-              
-              ),
-            );
-          case LabStatus.patientCheckedOut:
-            return Scaffold(
-              body: LabCheckoutView(
-                epc: dataProvider.socketMessage['epc'],
-                inTime: dataProvider.socketMessage['inTime'],
-                outTime: dataProvider.socketMessage['outTime'],
-                duration: dataProvider.socketMessage['duration'],
-              
-              ),
-            );
-        }
+        return _labScreen(dataProvider);
       }),
     );
+  }
+
+  _labScreen(DataProvider dataProvider) {
+    switch (dataProvider.labStatus) {
+      case LabStatus.labAvailable:
+        return Scaffold(
+          body: LabAvailableView(labId: dataProvider.labId),
+        );
+      case LabStatus.labOccupied:
+        return Scaffold(
+          body: LabOccupiedView(
+            labId: dataProvider.labId,
+            epc: dataProvider.socketMessage['epc'],
+            inTime: dataProvider.socketMessage['inTime'],
+          ),
+        );
+      case LabStatus.patientDetected:
+        return Scaffold(
+          body: LabPatientDetectedView(
+            epc: dataProvider.socketMessage['epc'],
+            inTime: dataProvider.socketMessage['inTime'],
+          ),
+        );
+      case LabStatus.patientCheckedOut:
+        return Scaffold(
+          body: LabCheckoutView(
+            epc: dataProvider.socketMessage['epc'],
+            inTime: dataProvider.socketMessage['inTime'],
+            outTime: dataProvider.socketMessage['outTime'],
+            duration: dataProvider.socketMessage['duration'],
+          ),
+        );
+    }
   }
 }

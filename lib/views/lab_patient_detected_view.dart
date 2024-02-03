@@ -16,7 +16,7 @@ class LabPatientDetectedView extends StatefulWidget {
 }
 
 class _LabPatientDetectedViewState extends State<LabPatientDetectedView> {
-  int _counter = 10;
+  int _counter = 5;
   Timer? _timer;
   late DataProvider _dataProvider;
 
@@ -74,7 +74,7 @@ class _LabPatientDetectedViewState extends State<LabPatientDetectedView> {
               header(),
               timer(),
               description(),
-              acceptButton(),
+              // acceptButton(),
             ],
           ),
         ),
@@ -182,7 +182,7 @@ class _LabPatientDetectedViewState extends State<LabPatientDetectedView> {
 
   Text header() {
     return const Text(
-      'New Patient Detected',
+      'New Check In',
       style: TextStyle(
         fontSize: 48.0, // Increased font size
         fontWeight: FontWeight.bold,
