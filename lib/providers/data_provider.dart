@@ -17,12 +17,16 @@ class DataProvider with ChangeNotifier {
   LabStatus _labStatus = LabStatus.labAvailable;
   Map<String, dynamic> _socketMessage = {};
   String? _patientId;
+  int _totalPages = 0;
+  int _currentPage = 0;
 
   bool get isLoading => _isLoading;
   int get labId => _labId;
   LabStatus get labStatus => _labStatus;
   Map<String, dynamic> get socketMessage => _socketMessage;
   String? get patientId => _patientId;
+  int get currentPage => _currentPage;
+  int get totalPages => _totalPages;
 
   final SocketConnectionService _socketConnectionService =
       SocketConnectionService();
@@ -47,14 +51,20 @@ class DataProvider with ChangeNotifier {
   }
 
   Future<void> fetchAndStoreSerialNumbers() async {
-    var serialNumbers = await _apiService.fetchSerialNumbers();
+    var serialNumbers = await _apiService.fetchSerialNumbers(
+      onProgress: (currentPage, totalPages) {
+        _currentPage = currentPage;
+        _totalPages = totalPages;
+        notifyListeners();
+      },
+    );
     print("Data recieved. Length: ${serialNumbers.length}");
     await _databaseService.insertSerialNumbers(serialNumbers);
   }
 
   getSerialNumber(String epc) async {
     notifyListeners();
-    _patientId = await _databaseService.getSerialNumberByEPC("E20000000000000000001500");
+    _patientId = await _databaseService.getSerialNumberByEPC(epc);
     print(_patientId);
     notifyListeners();
   }

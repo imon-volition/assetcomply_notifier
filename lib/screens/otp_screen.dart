@@ -106,17 +106,20 @@ class _OtpScreenState extends State<OtpScreen> {
                               }
                             : null,
                         child: Text(
-                          dataProvider.isLoading ? "Fetching Data..." : "Connect Now",
+                          dataProvider.isLoading ? (dataProvider.totalPages == 1 ? "Fetching Data..." : "Fetching Data (${dataProvider.currentPage} / ${dataProvider.totalPages})") : "Connect Now",
                         ),
                       ),
                     ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Text(
-                        "Edit Cath Lab Number ?",
-                        style: TextStyle(color: Colors.black),
+                    Visibility(
+                      visible: !dataProvider.isLoading,
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text(
+                          "Edit Cath Lab Number ?",
+                          style: TextStyle(color: Colors.black),
+                        ),
                       ),
                     )
                   ],

@@ -16,7 +16,7 @@ class LabPatientDetectedView extends StatefulWidget {
 }
 
 class _LabPatientDetectedViewState extends State<LabPatientDetectedView> {
-  int _counter = 10;
+  int _counter = 5;
   Timer? _timer;
   late DataProvider _dataProvider;
 
@@ -31,7 +31,7 @@ class _LabPatientDetectedViewState extends State<LabPatientDetectedView> {
         });
       } else {
         _timer!.cancel();
-        _dataProvider.clearEntry();
+        _dataProvider.labStatus = LabStatus.labOccupied;
       }
     });
   }
@@ -74,7 +74,7 @@ class _LabPatientDetectedViewState extends State<LabPatientDetectedView> {
               header(),
               timer(),
               description(),
-              acceptButton(),
+              // acceptButton(),
             ],
           ),
         ),

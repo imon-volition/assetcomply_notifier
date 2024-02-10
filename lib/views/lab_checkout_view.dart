@@ -90,28 +90,6 @@ class _LabCheckoutViewState extends State<LabCheckoutView> {
     );
   }
 
-  Widget cancelButton() {
-    return Column(
-      children: [
-        const Text(
-          'If you believe there has been a mistake or the details above are incorrect, please press the cancel button below.',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 16,
-            color: Colors.white,
-          ),
-        ),
-        const SizedBox(height: 30),
-        FloatingActionButton(
-          onPressed: () {
-            _dataProvider.clearEntry();
-          },
-          backgroundColor: Colors.white,
-          child: const Icon(Icons.close),
-        ),
-      ],
-    );
-  }
 
   Column description() {
     return Column(
